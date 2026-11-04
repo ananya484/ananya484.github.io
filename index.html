@@ -105,6 +105,14 @@
   .card .big { font-size: 30px; font-weight: 700; letter-spacing: -.02em; margin: 2px 0 8px; }
   .card .foot { margin-top: auto; }
   .card.wide { grid-column: span 2; }
+  .card.full { grid-column: 1 / -1; }
+  .heatwrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 24px; align-items: start; }
+  .heatwrap > div:first-child { display: flex; flex-direction: column; height: 100%; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .shots figure { margin: 0; border: 2px solid #000; box-shadow: var(--shadow-sm); background: #fff; }
+  .shots img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-bottom: 2px solid #000; }
+  .shots figcaption { font-family: "Space Mono", monospace; font-size: 11px; font-weight: 700; padding: 6px 8px; text-transform: uppercase; }
+  @media (max-width: 900px) { .heatwrap { grid-template-columns: 1fr; } }
 
   /* next question */
   .next { background: #000; color: #fff; padding: 40px; position: relative; overflow: hidden; }
@@ -163,6 +171,7 @@
     .num b { font-size: 28px; }
     .grid { grid-template-columns: 1fr; }
     .card.wide { grid-column: auto; }
+    .heatwrap { grid-template-columns: 1fr; }
     .next h3 { font-size: 28px; }
     .contact h2 { font-size: 36px; }
     .awards { padding: 18px 22px; }
@@ -261,6 +270,23 @@
     <p>Each started as one design, failed, and became a better one.</p>
   </div>
   <div class="grid">
+    <div class="card full reveal" style="background:var(--orange)">
+      <div class="heatwrap">
+        <div>
+          <span class="chip">Thermal control · 2025</span>
+          <div class="big">±0.5 °C</div>
+          <h3>MicroFluiThermics: lab-on-chip microheater</h3>
+          <div class="meta">Co-advised by Dr. Navya Sethu</div>
+          <p>Carbon-dot synthesis kept failing on a hot plate, so I built a heater a PDMS chip can sit on: a nichrome element under the chip, thermocouple feedback, and Arduino PID control in a boxed controller with a live display of temperature, set point and heater power.</p>
+          <p>The chip's syringe-fed inlets let reagents flow while the stage holds temperature. I characterised, calibrated and insulation-tested it to improve response time and energy use.</p>
+          <div class="foot"><span class="chip">Complete · manuscript in prep · ICRTB 2026 poster</span></div>
+        </div>
+        <div class="shots">
+          <figure><img src="img/microheater-display.webp" alt="MicroFluiThermics controller with LCD showing temperature, set point and PWM, next to a PDMS chip on the heater plate" loading="lazy"><figcaption>Controller + heater stage</figcaption></figure>
+          <figure><img src="img/microheater-chip.webp" alt="PDMS microfluidic chip on the heater plate with three syringe inlets and thermocouple" loading="lazy"><figcaption>PDMS chip with syringe inlets</figcaption></figure>
+        </div>
+      </div>
+    </div>
     <div class="card wide reveal" style="background:var(--pink)">
       <span class="chip">Separation · 2025–26</span>
       <h3>SPINNOVATE: electricity-free blood centrifuges</h3>
@@ -268,14 +294,6 @@
       <p>Conventional centrifuges need power and upkeep that rural clinics lack. We built two that need neither: a <b>₹300 hand-held thread-driven centrifuge</b> spun by string tension, and a <b>₹2,000 tabletop centrifuge whose rotor spins on NdFeB magnetic levitation</b>. Blood in heparinized capillaries, held in a custom PDMS chip to avoid cross-contamination, separates by density as it spins.</p>
       <p>A phone fitted with a microfluidic lens then images the sample, and our app returns blood counts and flags. Building them showed me the gap: density is a shadow of sickle-cell disease. The defining change is mechanical.</p>
       <div class="foot"><span class="chip" style="background:var(--yellow)">SIH 2025 Institute winner · Top 10 Health Hack 2026</span></div>
-    </div>
-    <div class="card reveal" style="background:var(--orange)">
-      <span class="chip">Thermal control · 2025</span>
-      <div class="big">±0.5 °C</div>
-      <h3>Lab-on-chip microheater</h3>
-      <div class="meta">Co-advised by Dr. Navya Sethu</div>
-      <p>Carbon-dot synthesis kept failing on a hot plate, so I built a PDMS-compatible nichrome heater with thermocouple feedback and Arduino PID control, then characterised, calibrated and insulation-tested it.</p>
-      <div class="foot"><span class="chip">Complete · manuscript in prep</span></div>
     </div>
     <div class="card reveal" style="background:var(--sky)">
       <span class="chip">Sample prep · 2026–</span>
