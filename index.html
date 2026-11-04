@@ -4,126 +4,176 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ananya Sharma · Biomicrofluidics</title>
-<meta name="description" content="Ananya Sharma — Bioengineering undergraduate working on microscale transport, microfluidic devices and point-of-care diagnostics.">
+<meta name="description" content="Ananya Sharma — microscale transport, cell mechanics and low-cost microfluidic devices for point-of-care diagnostics.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #F8F5E8;
-    --ink: #111111;
-    --muted: #444444;
-    --yellow: #FEF08A;
-    --lavender: #DDD6FE;
-    --mint: #BBF7D0;
-    --pink: #FBCFE8;
-    --sky: #BAE6FD;
-    --orange: #FB923C;
-    --shadow: 6px 6px 0 #000;
-    --shadow-sm: 4px 4px 0 #000;
+    --bg: #F8F5E8; --ink: #111; --muted: #444;
+    --yellow: #FEF08A; --lavender: #DDD6FE; --mint: #BBF7D0; --pink: #FBCFE8; --sky: #BAE6FD; --orange: #FB923C; --red: #EF4444;
+    --shadow: 6px 6px 0 #000; --shadow-sm: 4px 4px 0 #000;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--bg); color: var(--ink);
-         font-family: "Space Grotesk", system-ui, sans-serif; font-size: 17px; line-height: 1.55;
-         padding-bottom: 110px; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Space Grotesk", system-ui, sans-serif;
+         font-size: 17px; line-height: 1.55; padding-bottom: 110px; overflow-x: hidden; }
+  body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+         background-image: radial-gradient(#0000001a 1px, transparent 1px); background-size: 22px 22px; }
   a { color: inherit; }
   .mono { font-family: "Space Mono", ui-monospace, monospace; }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
-
-  /* top bar */
-  .top { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
-  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .logo .mark { width: 46px; height: 46px; border: 2px solid #000; background: var(--yellow);
-                box-shadow: var(--shadow-sm); display: grid; place-items: center; font-weight: 700; font-size: 18px; }
-  .logo .nm { font-weight: 700; font-size: 18px; line-height: 1.1; }
-  .logo .sub { display: inline-block; margin-top: 3px; font-size: 11px; padding: 1px 6px; border: 2px solid #000; background: var(--yellow); }
-  .cta { background: #000; color: #fff; text-decoration: none; padding: 10px 18px; font-family: "Space Mono", monospace;
-         font-weight: 700; font-size: 14px; border: 2px solid #000; box-shadow: var(--shadow-sm); }
-  .cta:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
-
-  /* blocks */
-  .block { border: 2px solid #000; box-shadow: var(--shadow); background: var(--bg); margin: 28px 0; }
-  .pad { padding: 34px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
   .label { font-family: "Space Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
   .chip { display: inline-block; border: 2px solid #000; padding: 2px 10px; font-family: "Space Mono", monospace;
           font-size: 12px; font-weight: 700; text-transform: uppercase; background: #fff; }
-  h1 { font-size: 72px; line-height: .95; letter-spacing: -.02em; margin: 18px 0 16px; font-weight: 700; text-transform: uppercase; }
-  h1 .hl { background: var(--lavender); border: 2px solid #000; padding: 0 10px; box-shadow: var(--shadow-sm); display: inline-block; margin-top: 6px; }
-  h2 { font-size: 34px; line-height: 1.1; margin: 10px 0 8px; font-weight: 700; }
-  .lead { font-size: 20px; max-width: 700px; margin: 0 0 24px; }
-  .sublead { color: var(--muted); max-width: 680px; margin: 0 0 22px; }
-
-  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; border: 2px solid #000;
-         padding: 10px 16px; font-family: "Space Mono", monospace; font-weight: 700; font-size: 14px;
-         text-transform: uppercase; background: #fff; box-shadow: var(--shadow-sm); transition: transform .08s, box-shadow .08s; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; border: 2px solid #000; padding: 10px 16px;
+         font-family: "Space Mono", monospace; font-weight: 700; font-size: 14px; text-transform: uppercase; background: #fff;
+         box-shadow: var(--shadow-sm); transition: transform .08s, box-shadow .08s; cursor: pointer; }
   .btn:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
-  .btn.y { background: var(--yellow); }
-  .btn.o { background: var(--orange); }
+  .btn.y { background: var(--yellow); } .btn.o { background: var(--orange); } .btn.k { background: #000; color: #fff; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .block { border: 2px solid #000; box-shadow: var(--shadow); background: var(--bg); }
 
-  /* stats */
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 30px; }
-  .stat { border: 2px solid #000; box-shadow: var(--shadow-sm); padding: 14px 16px; }
-  .stat b { display: block; font-size: 28px; line-height: 1.1; }
-  .stat span { font-family: "Space Mono", monospace; font-size: 12px; text-transform: uppercase; }
-  .s1 { background: var(--yellow); } .s2 { background: var(--lavender); } .s3 { background: var(--mint); } .s4 { background: var(--pink); }
+  /* top */
+  .top { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo .mark { width: 46px; height: 46px; border: 2px solid #000; background: var(--yellow); box-shadow: var(--shadow-sm);
+                display: grid; place-items: center; font-weight: 700; font-size: 18px; transform: rotate(-4deg); }
+  .logo .nm { font-weight: 700; font-size: 18px; line-height: 1.1; }
+  .logo .sub { display: inline-block; margin-top: 3px; font-size: 11px; padding: 1px 6px; border: 2px solid #000; background: var(--yellow); }
 
-  /* section heads */
-  .shead { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin: 56px 0 18px; }
-  .shead p { margin: 0; color: var(--muted); max-width: 560px; }
+  /* hero */
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 0; margin-top: 10px; }
+  .hero .txt { padding: 36px; border-right: 2px solid #000; }
+  h1 { font-size: 78px; line-height: .92; letter-spacing: -.03em; margin: 18px 0 18px; font-weight: 700; text-transform: uppercase; }
+  h1 .hl { background: var(--lavender); border: 2px solid #000; padding: 0 10px; box-shadow: var(--shadow-sm); display: inline-block;
+           margin-top: 8px; transform: rotate(-1.5deg); }
+  .hook { font-size: 23px; font-weight: 700; line-height: 1.25; margin: 0 0 12px; }
+  .hook mark { background: var(--yellow); padding: 0 4px; }
+  .lead { color: var(--muted); margin: 0 0 22px; max-width: 520px; }
+  .viz { position: relative; background: #fff; min-height: 460px; }
+  .viz canvas { width: 100%; height: 100%; display: block; position: absolute; inset: 0; }
+  .viz .tag { position: absolute; left: 14px; top: 14px; z-index: 2; }
+  .viz .legend { position: absolute; left: 14px; bottom: 14px; z-index: 2; display: flex; flex-wrap: wrap; gap: 8px; }
+  .viz .legend span { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 2px solid #000;
+                      padding: 2px 8px; font-family: "Space Mono", monospace; font-size: 11px; font-weight: 700; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid #000; display: inline-block; }
 
-  /* research cards */
-  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-  .card { border: 2px solid #000; box-shadow: var(--shadow); background: #fff; padding: 22px; display: flex; flex-direction: column; }
-  .card .icon { width: 44px; height: 44px; border: 2px solid #000; display: grid; place-items: center; font-size: 20px; margin-bottom: 14px; }
-  .card h3 { font-size: 21px; line-height: 1.2; margin: 6px 0 6px; font-weight: 700; }
+  /* ticker */
+  .ticker { margin: 34px -20px 0; border-top: 2px solid #000; border-bottom: 2px solid #000; background: #000; color: var(--yellow);
+            overflow: hidden; white-space: nowrap; transform: rotate(-1deg); }
+  .ticker .run { display: inline-block; padding: 10px 0; font-family: "Space Mono", monospace; font-weight: 700; font-size: 15px;
+                 animation: tick 38s linear infinite; }
+  .ticker .run span { margin: 0 22px; }
+  @keyframes tick { to { transform: translateX(-50%); } }
+
+  /* numbers */
+  .nums { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 46px 0 0; }
+  .num { border: 2px solid #000; box-shadow: var(--shadow); padding: 18px; }
+  .num b { display: block; font-size: 38px; line-height: 1; letter-spacing: -.02em; }
+  .num span { display: block; margin-top: 10px; font-family: "Space Mono", monospace; font-size: 12px; text-transform: uppercase; }
+
+  /* section head */
+  .shead { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin: 70px 0 20px; }
+  .shead h2 { font-size: 44px; line-height: 1; margin: 8px 0 0; letter-spacing: -.02em; }
+  .shead p { margin: 0; color: var(--muted); max-width: 520px; }
+
+  /* featured */
+  .feature { display: grid; grid-template-columns: 1.1fr 1fr; background: var(--lavender); }
+  .feature .l { padding: 30px; border-right: 2px solid #000; }
+  .feature h3 { font-size: 30px; line-height: 1.1; margin: 12px 0 10px; }
+  .feature ul { padding-left: 20px; margin: 10px 0 18px; }
+  .feature li { margin-bottom: 6px; }
+  .calc { padding: 30px; background: #fff; }
+  .calc h4 { margin: 8px 0 4px; font-size: 22px; }
+  .calc .row { display: grid; grid-template-columns: 1fr 120px; gap: 12px; align-items: center; margin: 14px 0; }
+  .calc input[type=range] { width: 100%; accent-color: #000; }
+  .calc .val { font-family: "Space Mono", monospace; font-weight: 700; text-align: right; }
+  .calc .out { border: 2px solid #000; background: var(--yellow); box-shadow: var(--shadow-sm); padding: 16px; margin-top: 18px; }
+  .calc .out b { font-size: 34px; display: block; line-height: 1.1; }
+  .calc .note { font-size: 13px; color: var(--muted); margin-top: 12px; }
+
+  /* projects */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 22px; }
+  .card { border: 2px solid #000; box-shadow: var(--shadow); background: #fff; padding: 22px; display: flex; flex-direction: column;
+          transition: transform .15s, box-shadow .15s; }
+  .card:hover { transform: translate(-3px,-3px) rotate(-.4deg); box-shadow: 9px 9px 0 #000; }
+  .card .chip { align-self: flex-start; }
+  .card h3 { font-size: 21px; line-height: 1.2; margin: 12px 0 6px; }
   .card .meta { font-family: "Space Mono", monospace; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
   .card p { margin: 0 0 14px; }
-  .card .chip { align-self: flex-start; }
+  .card .big { font-size: 30px; font-weight: 700; letter-spacing: -.02em; margin: 2px 0 8px; }
   .card .foot { margin-top: auto; }
+  .card.wide { grid-column: span 2; }
+
+  /* next question */
+  .next { background: #000; color: #fff; padding: 40px; position: relative; overflow: hidden; }
+  .next .label { color: var(--yellow); }
+  .next h3 { font-size: 40px; line-height: 1.05; margin: 12px 0 14px; max-width: 760px; }
+  .next p { color: #ddd; max-width: 720px; margin: 0 0 12px; }
+  .next .chip { background: var(--yellow); color: #000; }
+
+  /* lab bench */
+  .bench { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .tool { border: 2px solid #000; box-shadow: var(--shadow-sm); padding: 16px 18px; }
+  .tool p { margin: 8px 0 0; }
 
   /* publications */
-  .pub { border: 2px solid #000; background: #fff; box-shadow: var(--shadow-sm); padding: 16px 18px; margin-bottom: 14px; }
+  .pubs { padding: 30px; background: #fff; }
+  .pub { border-left: 6px solid #000; padding: 6px 0 6px 16px; margin: 0 0 18px; }
+  .pub.star { border-color: var(--orange); }
   .pub .t { font-weight: 700; }
-  .pub .v { font-size: 15px; color: var(--muted); margin-top: 4px; }
+  .pub .v { font-size: 15px; color: var(--muted); margin-top: 3px; }
   .pub a { font-family: "Space Mono", monospace; font-weight: 700; font-size: 13px; }
-  .group { margin: 26px 0 12px; }
-
-  /* skills */
-  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
-  .skill { border: 2px solid #000; box-shadow: var(--shadow-sm); padding: 16px 18px; }
+  .minor { border-top: 2px dashed #000; padding-top: 16px; margin-top: 8px; font-size: 15px; color: var(--muted); }
 
   /* awards */
-  .awards { list-style: none; margin: 0; padding: 0; }
-  .awards li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-top: 2px dashed #000; }
+  .awards { list-style: none; margin: 0; padding: 26px 30px; }
+  .awards li { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-top: 2px dashed #000; }
   .awards li:first-child { border-top: 0; }
   .awards .yr { font-family: "Space Mono", monospace; font-size: 13px; white-space: nowrap; }
 
-  /* contact */
-  .contact { background: var(--yellow); }
-  footer { font-family: "Space Mono", monospace; font-size: 13px; padding: 10px 0 30px; }
+  .contact { background: var(--yellow); padding: 40px; margin-top: 70px; }
+  .contact h2 { font-size: 52px; line-height: 1; margin: 10px 0 14px; letter-spacing: -.02em; }
+  footer { font-family: "Space Mono", monospace; font-size: 13px; padding: 26px 0 30px; }
 
-  /* floating pill nav */
-  .pill { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 10;
-          display: flex; gap: 4px; background: var(--bg); border: 2px solid #000; border-radius: 999px;
-          padding: 6px; box-shadow: var(--shadow-sm); }
-  .pill a { text-decoration: none; font-family: "Space Mono", monospace; font-weight: 700; font-size: 13px;
-            text-transform: uppercase; padding: 8px 14px; border-radius: 999px; border: 2px solid transparent; white-space: nowrap; }
+  .pill { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 10; display: flex; gap: 4px;
+          background: var(--bg); border: 2px solid #000; border-radius: 999px; padding: 6px; box-shadow: var(--shadow-sm); }
+  .pill a { text-decoration: none; font-family: "Space Mono", monospace; font-weight: 700; font-size: 13px; text-transform: uppercase;
+            padding: 8px 14px; border-radius: 999px; border: 2px solid transparent; white-space: nowrap; }
   .pill a.on { background: var(--orange); border-color: #000; }
 
-  @media (max-width: 760px) {
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    .hero, .feature { grid-template-columns: 1fr; }
+    .hero .txt, .feature .l { border-right: 0; border-bottom: 2px solid #000; }
+    .viz { min-height: 340px; }
+    .grid { grid-template-columns: 1fr 1fr; }
+    .card.wide { grid-column: span 2; }
+  }
+  @media (max-width: 640px) {
     body { font-size: 16px; }
-    .pad { padding: 22px; }
-    h1 { font-size: 46px; }
-    h2 { font-size: 28px; }
-    .lead { font-size: 18px; }
-    .stats { grid-template-columns: repeat(2, 1fr); }
+    .hero .txt, .feature .l, .calc, .pubs, .next, .contact { padding: 22px; }
+    h1 { font-size: 50px; }
+    .hook { font-size: 20px; }
+    .shead h2 { font-size: 34px; }
+    .nums { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .num b { font-size: 28px; }
     .grid { grid-template-columns: 1fr; }
+    .card.wide { grid-column: auto; }
+    .next h3 { font-size: 28px; }
+    .contact h2 { font-size: 36px; }
+    .awards { padding: 18px 22px; }
     .awards li { flex-direction: column; gap: 2px; }
-    .cta { display: none; }
+    .calc .row { grid-template-columns: 1fr 96px; }
     .pill a { padding: 7px 9px; font-size: 11px; }
     .pill a.extra { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker .run { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
   }
 </style>
 </head>
@@ -133,191 +183,294 @@
   <div class="top">
     <a class="logo" href="#home">
       <div class="mark mono">AS</div>
-      <div><div class="nm">Ananya Sharma</div><span class="sub mono">BIOENGINEERING · PUNE</span></div>
+      <div><div class="nm">Ananya Sharma</div><span class="sub mono">BIOMICROFLUIDICS · PUNE</span></div>
     </a>
-    <a class="cta" href="Ananya_Sharma_CV.pdf">Download CV →</a>
+    <a class="btn k" href="Ananya_Sharma_CV.pdf">CV →</a>
   </div>
 
-  <!-- hero -->
-  <section class="block pad" id="home">
-    <span class="chip">Biomicrofluidics // B.Tech 2027</span>
-    <h1>Ananya<br><span class="hl">Sharma</span></h1>
-    <p class="lead">I study how fluid flow, channel geometry and surface chemistry decide what a microfluidic device can separate or detect, and I build low-cost point-of-care diagnostics around those answers.</p>
-    <div class="btns">
-      <a class="btn o" href="#research">See my research →</a>
-      <a class="btn y" href="Ananya_Sharma_CV.pdf">Download CV →</a>
-      <a class="btn" href="https://scholar.google.com/citations?user=hjBMR0YAAAAJ">Scholar ↗</a>
-      <a class="btn" href="https://orcid.org/0009-0001-3081-7199">ORCID ↗</a>
-      <a class="btn" href="https://github.com/ananya484">GitHub ↗</a>
+  <!-- HERO -->
+  <section class="block hero" id="home">
+    <div class="txt">
+      <span class="chip">Transport · Cell mechanics · Devices</span>
+      <h1>Ananya<br><span class="hl">Sharma</span></h1>
+      <p class="hook">A sickled red cell stops bending. <mark>Can a channel notice?</mark></p>
+      <p class="lead">I model how fluid flow, channel geometry and surfaces decide what a microfluidic device can separate or detect, then build the device on a bench in Pune for a few hundred rupees.</p>
+      <div class="btns">
+        <a class="btn o" href="#transport">See the physics →</a>
+        <a class="btn y" href="Ananya_Sharma_CV.pdf">Download CV →</a>
+        <a class="btn" href="https://scholar.google.com/citations?user=hjBMR0YAAAAJ">Scholar ↗</a>
+        <a class="btn" href="https://github.com/ananya484">GitHub ↗</a>
+      </div>
     </div>
-    <div class="stats">
-      <div class="stat s1"><b>9.80/10</b><span>CGPA · Rank 2</span></div>
-      <div class="stat s2"><b>IISc</b><span>Research intern 2026</span></div>
-      <div class="stat s3"><b>3</b><span>Papers under review</span></div>
-      <div class="stat s4"><b>8</b><span>Research projects</span></div>
+    <div class="viz" id="vizbox">
+      <span class="chip tag">Concept · cells in a spiral microchannel</span>
+      <canvas id="spiral" aria-label="Animation of rigid and deformable cells moving through a spiral microchannel"></canvas>
+      <div class="legend">
+        <span><i class="dot" style="background:#EF4444"></i>rigid (sickled)</span>
+        <span><i class="dot" style="background:#BAE6FD"></i>deformable (healthy)</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="ticker" aria-hidden="true"><div class="run">
+  <span>CONVECTION–DIFFUSION–REACTION</span><span>✦</span><span>Q* = V/T</span><span>✦</span><span>PDMS SOFT LITHOGRAPHY</span><span>✦</span><span>PID ±0.5 °C</span><span>✦</span><span>DEAN FLOW</span><span>✦</span><span>COMSOL</span><span>✦</span><span>MAGNETIC LEVITATION</span><span>✦</span><span>₹300 CENTRIFUGE</span><span>✦</span><span>IISc BANGALORE</span><span>✦</span>
+  <span>CONVECTION–DIFFUSION–REACTION</span><span>✦</span><span>Q* = V/T</span><span>✦</span><span>PDMS SOFT LITHOGRAPHY</span><span>✦</span><span>PID ±0.5 °C</span><span>✦</span><span>DEAN FLOW</span><span>✦</span><span>COMSOL</span><span>✦</span><span>MAGNETIC LEVITATION</span><span>✦</span><span>₹300 CENTRIFUGE</span><span>✦</span><span>IISc BANGALORE</span><span>✦</span>
+</div></div>
+
+<div class="wrap">
+  <div class="nums reveal">
+    <div class="num" style="background:var(--yellow)"><b>−2.2 / +1.4%</b><span>closed-form rules vs full simulation</span></div>
+    <div class="num" style="background:var(--mint)"><b>±0.5 °C</b><span>on-chip PID thermal control</span></div>
+    <div class="num" style="background:var(--pink)"><b>₹300</b><span>thread-driven blood centrifuge</span></div>
+    <div class="num" style="background:var(--lavender)"><b>9.80/10</b><span>CGPA · rank 2</span></div>
+  </div>
+
+  <!-- FEATURED TRANSPORT -->
+  <div class="shead" id="transport">
+    <div><span class="label">✦ Featured research</span><h2>How much of a sample<br>can a sensor catch?</h2></div>
+    <p>My sole-author transport study, under review at <b>Microfluidics and Nanofluidics</b>.</p>
+  </div>
+  <section class="block feature reveal">
+    <div class="l">
+      <span class="chip">Modelling · sole author · 2026</span>
+      <h3>Mass transport and capture in microchannel surface sensors</h3>
+      <p>A patient sample is small. Flow it fast and each molecule has less time to reach the surface; flow it slowly and part of the sample is never used. I formulated and solved the convection–diffusion–reaction problem to find the balance.</p>
+      <ul>
+        <li>Capture peaks when the flow processes the whole sample in the time available: <b>Q* = V/T</b>.</li>
+        <li>A dimensionless <b>kinetic ceiling</b>, set by binding rate, receptor density and sensor area, caps capture however the flow is tuned.</li>
+        <li>A universal capture map and closed-form design rules within <b>−2.2 to +1.4%</b> of full numerical simulations.</li>
+      </ul>
+      <div class="btns"><a class="btn y" href="https://doi.org/10.21203/rs.3.rs-11390083/v1">Read the preprint ↗</a></div>
+    </div>
+    <div class="calc">
+      <span class="label">Try it</span>
+      <h4>Optimal flow rate, Q* = V/T</h4>
+      <div class="row"><label for="v">Sample volume V</label><span class="val" id="vv"></span></div>
+      <input type="range" id="v" min="1" max="200" value="20" aria-label="Sample volume in microlitres">
+      <div class="row"><label for="t">Assay time T</label><span class="val" id="tv"></span></div>
+      <input type="range" id="t" min="1" max="60" value="10" aria-label="Assay time in minutes">
+      <div class="out"><span class="label">Run the chip at</span><b id="q"></b><span class="mono" id="q2"></span></div>
+      <p class="note">Slower and part of the sample is left unused; faster and each molecule spends less time near the sensor. The kinetic ceiling then decides how much of what passes is caught.</p>
     </div>
   </section>
 
-  <!-- research -->
-  <div class="shead" id="research">
-    <div><span class="label">✦ Research</span><h2>What I work on</h2></div>
-    <p>From transport models to finished devices: each project asks what is actually doing the work inside a microfluidic system.</p>
+  <!-- DEVICES -->
+  <div class="shead" id="devices">
+    <div><span class="label">✦ Devices on the bench</span><h2>Things I've built</h2></div>
+    <p>Each started as one design, failed, and became a better one.</p>
   </div>
   <div class="grid">
-    <div class="card">
-      <div class="icon" style="background:var(--lavender)">∇</div>
-      <span class="chip" style="background:var(--lavender)">Modelling</span>
-      <h3>Mass transport in microchannel sensors</h3>
-      <div class="meta">Independent research · sole author · 2026–</div>
-      <p>A convection–diffusion–reaction model of how much of a finite sample a microchannel surface sensor can capture. Capture peaks at flow rate Q* = V/T, under a dimensionless kinetic ceiling; closed-form rules match full simulations within −2.2 to +1.4%.</p>
-      <div class="foot"><a class="btn" href="https://doi.org/10.21203/rs.3.rs-11390083/v1">Preprint ↗</a></div>
-    </div>
-    <div class="card">
-      <div class="icon" style="background:var(--mint)">🧪</div>
-      <span class="chip" style="background:var(--mint)">IISc Bangalore</span>
-      <h3>Plasma biomarker immunoassays</h3>
-      <div class="meta">Prof. Sai Siva Gorthi · Jun–Aug 2026</div>
-      <p>Sandwich ELISAs for the Alzheimer's markers p-tau217 and NfL at pg/mL levels in human plasma. A glutaraldehyde-free EDC/sulfo-NHS surface route on polystyrene, non-specific binding brought under control, and a prototype assay cartridge.</p>
-      <div class="foot"><span class="chip">With CBR &amp; IBRO</span></div>
-    </div>
-    <div class="card">
-      <div class="icon" style="background:var(--pink)">🩸</div>
-      <span class="chip" style="background:var(--pink)">Device</span>
+    <div class="card wide reveal" style="background:var(--pink)">
+      <span class="chip">Separation · 2025–26</span>
       <h3>Density-based blood-cell screening</h3>
-      <div class="meta">Dr. Sulaxana Pandey · 2025–26</div>
-      <p>When an integrated magnetic-levitation chip failed on the bench, I built two separate prototypes: a ₹300 thread-driven centrifuge and a ₹2,000 tabletop maglev device, both read by a smartphone AI model, for sickle-cell and thalassemia screening.</p>
-      <div class="foot"><span class="chip" style="background:var(--yellow)">SIH 2025 winner · Health Hack top 10</span></div>
+      <div class="meta">Dr. Sulaxana Pandey's lab · team project</div>
+      <p>An integrated magnetic-levitation chip worked on paper and failed on the bench. So we built two machines that sort blood by density: a <b>₹300 thread-driven centrifuge</b> and a <b>₹2,000 tabletop magnetic-levitation device</b>, both read by a smartphone model, for sickle-cell and thalassemia screening. Both were tested and demonstrated.</p>
+      <p>Building them showed me the gap: density is a shadow of sickle-cell disease. The defining change is mechanical.</p>
+      <div class="foot"><span class="chip" style="background:var(--yellow)">SIH 2025 Institute winner · Top 10 Health Hack 2026</span></div>
     </div>
-    <div class="card">
-      <div class="icon" style="background:var(--orange)">🔥</div>
-      <span class="chip" style="background:var(--orange)">Device</span>
+    <div class="card reveal" style="background:var(--orange)">
+      <span class="chip">Thermal control · 2025</span>
+      <div class="big">±0.5 °C</div>
       <h3>Lab-on-chip microheater</h3>
-      <div class="meta">Co-advised by Dr. Navya Sethu · 2025</div>
-      <p>An Arduino PID-controlled nichrome heater with thermocouple feedback that holds PDMS chips within ±0.5 °C, with thermal characterisation, calibration and insulation testing.</p>
+      <div class="meta">Co-advised by Dr. Navya Sethu</div>
+      <p>Carbon-dot synthesis kept failing on a hot plate, so I built a PDMS-compatible nichrome heater with thermocouple feedback and Arduino PID control, then characterised, calibrated and insulation-tested it.</p>
       <div class="foot"><span class="chip">Complete · manuscript in prep</span></div>
     </div>
-    <div class="card">
-      <div class="icon" style="background:var(--sky)">🦠</div>
-      <span class="chip" style="background:var(--sky)">Device</span>
-      <h3>Rabies diagnostic chip</h3>
-      <div class="meta">2026–</div>
-      <p>Finger-prick plasma separation, anti-nucleoprotein capture and a gold-nanoparticle colorimetric readout scored by a smartphone CNN.</p>
-      <div class="foot"><span class="chip">In development</span></div>
+    <div class="card reveal" style="background:var(--sky)">
+      <span class="chip">Sample prep · 2026–</span>
+      <h3>Finger-prick rabies chip</h3>
+      <div class="meta">In development</div>
+      <p>Integrated plasma separation from whole blood, anti-nucleoprotein capture and a gold-nanoparticle colorimetric readout, scored by a smartphone.</p>
+      <div class="foot"><span class="chip">Microfluidic sample prep</span></div>
     </div>
-    <div class="card">
-      <div class="icon" style="background:var(--yellow)">👁</div>
-      <span class="chip" style="background:var(--yellow)">Biomaterials</span>
+    <div class="card reveal" style="background:var(--mint)">
+      <span class="chip">Surfaces · IISc 2026</span>
+      <h3>Surface chemistry in plasma</h3>
+      <div class="meta">Prof. Sai Siva Gorthi · IISc Bangalore</div>
+      <p>Sandwich ELISAs for p-tau217 and NfL at pg/mL in human plasma. I designed a glutaraldehyde-free EDC/sulfo-NHS route on polystyrene, fought non-specific binding, and built a prototype assay cartridge with optical-microfluidic imaging.</p>
+      <div class="foot"><span class="chip">Buffer forgives. Plasma doesn't.</span></div>
+    </div>
+    <div class="card reveal" style="background:var(--yellow)">
+      <span class="chip">Diffusive release · 2025–</span>
       <h3>Quantum-dot contact lens</h3>
-      <div class="meta">2025–</div>
-      <p>Sappan-wood quantum dots in PDMS for sustained, diffusive ocular drug release that can be tracked by fluorescence.</p>
-      <div class="foot"><span class="chip" style="background:var(--yellow)">1st place poster · ICRTB 2026</span></div>
-    </div>
-    <div class="card">
-      <div class="icon" style="background:var(--lavender)">📊</div>
-      <span class="chip" style="background:var(--lavender)">Data</span>
-      <h3>Honest validation of biomedical models</h3>
-      <div class="meta">Independent computational research · 2026–</div>
-      <p>An exercise-stage-only baseline estimated blood lactate with MAE 0.966 mmol/L, beating heart rate alone. Subject-level conformal calibration restored EEG coverage for unseen users (0.787 → 0.908). One random split let a worse model win in 56% of 500 splits.</p>
-      <div class="foot"><span class="chip">2 under review · 1 preprint</span></div>
-    </div>
-    <div class="card">
-      <div class="icon" style="background:var(--mint)">🗺</div>
-      <span class="chip" style="background:var(--mint)">Open data</span>
-      <h3>OrganoidAI Map</h3>
-      <div class="meta">Zenodo database · 2026</div>
-      <p>A coded, searchable database of 245 machine-learning studies on organoids and organs-on-chips, screened from 1,164 records.</p>
-      <div class="foot"><a class="btn" href="https://doi.org/10.5281/zenodo.23835346">Zenodo ↗</a></div>
+      <div class="meta">PDMS · microfluidic-assisted fabrication</div>
+      <p>Sappan-wood quantum dots in a PDMS lens for slow, diffusive, fluorescence-trackable ocular drug release. Lenses fabricated; drug loading in progress.</p>
+      <div class="foot"><span class="chip">1st place poster · ICRTB 2026</span></div>
     </div>
   </div>
 
-  <!-- publications -->
-  <div class="shead" id="publications">
-    <div><span class="label">✦ Publications</span><h2>Papers &amp; presentations</h2></div>
-  </div>
-  <section class="block pad" style="background:var(--lavender)">
-    <span class="chip">Under review</span>
-    <div class="group">
-      <div class="pub"><div class="t">How much of a finite sample can a microchannel surface sensor capture? Optimal flow rate, universal capture map and closed-form design rules.</div>
-        <div class="v"><b>Sharma, A.</b> · Microfluidics and Nanofluidics · submitted Oct. 2026 · <a href="https://doi.org/10.21203/rs.3.rs-11390083/v1">PREPRINT ↗</a></div></div>
-      <div class="pub"><div class="t">Exercise stage explains most of the accuracy of blood-lactate estimation in graded exercise tests.</div>
-        <div class="v"><b>Sharma, A.</b> · Physiological Measurement · submitted Sep. 2026 · <a href="https://github.com/ananya484/workloadcal">CODE ↗</a></div></div>
-      <div class="pub"><div class="t">Subject-level conformal calibration for uncertainty-aware mental-workload detection on consumer-grade EEG.</div>
-        <div class="v"><b>Sharma, A.</b>*, Kale, A.*, Pattanashetti, A.* (*equal contribution) · Biomedical Signal Processing and Control · submitted Oct. 2026 · <a href="https://github.com/ananya484/eeg-workload-gradient-boosting">CODE ↗</a></div></div>
-    </div>
-    <span class="chip">Preprints &amp; datasets</span>
-    <div class="group">
-      <div class="pub"><div class="t">The declared winner of a clinical prediction model comparison is often decided by the random split: a simulation study.</div>
-        <div class="v"><b>Sharma, A.</b> · Research Square · 2026 · <a href="https://doi.org/10.21203/rs.3.rs-10794678/v1">DOI ↗</a></div></div>
-      <div class="pub"><div class="t">OrganoidAI Map: a coded database of machine-learning studies on organoids and organs-on-chips (245 studies).</div>
-        <div class="v"><b>Sharma, A.</b> · Zenodo, v1.2.0 · 2026 · <a href="https://doi.org/10.5281/zenodo.23835346">DOI ↗</a></div></div>
-    </div>
-    <span class="chip">Conference posters</span>
-    <div class="group" style="margin-bottom:0">
-      <div class="pub"><div class="t">Development of a low-cost temperature-controlled microheater for lab-on-chip platforms.</div>
-        <div class="v"><b>Sharma, A.</b>, Tawade, A., Sankpal, A., Sethu, N., Pandey, S. · ICRTB 2026, Pune · Poster PP-30</div></div>
-      <div class="pub" style="margin-bottom:0"><div class="t">Smart contact lens technologies for ocular diagnostics.</div>
-        <div class="v"><b>Sharma, A.</b>, Tawade, A., Pandey, S. · ICRTB 2026, Pune · Poster PP-29</div></div>
-    </div>
+  <!-- NEXT QUESTION -->
+  <section class="block next reveal" id="next" style="margin-top:70px">
+    <span class="label">✦ The question I want to answer next</span>
+    <h3>Can red-cell mechanics, not just density, become the basis of a label-free test?</h3>
+    <p>In curved microchannels, inertial lift and Dean flow push cells to equilibrium positions that depend on size, shape and stiffness. I want to test whether sickled and healthy cells end up far enough apart, reproducibly enough, to separate them, when sickling changes with oxygen and from one patient to the next.</p>
+    <p>The answer may be no. I would rather find that out honestly, against density-based separation, than assume mechanics is better.</p>
+    <span class="chip">Proposed research direction · graduate study</span>
   </section>
 
-  <!-- skills -->
+  <!-- BENCH SKILLS -->
   <div class="shead" id="skills">
-    <div><span class="label">✦ Toolkit</span><h2>Skills</h2></div>
+    <div><span class="label">✦ Toolkit</span><h2>On my bench</h2></div>
   </div>
-  <div class="skills">
-    <div class="skill" style="background:var(--yellow)"><span class="label">Transport &amp; modelling</span><p>Microscale fluid mechanics and mass transport, dimensionless scaling, closed-form approximations, finite-difference and FEM (COMSOL), Monte Carlo</p></div>
-    <div class="skill" style="background:var(--mint)"><span class="label">Microfabrication</span><p>Soft lithography, photolithography, PDMS devices, microfluidic chip design</p></div>
-    <div class="skill" style="background:var(--pink)"><span class="label">Hardware &amp; design</span><p>PID control, thermocouple feedback, Arduino, ESP, IoT; SolidWorks, AutoCAD</p></div>
-    <div class="skill" style="background:var(--sky)"><span class="label">Programming</span><p>Python (NumPy, SciPy, scikit-learn), C++, Java, SQL; CNNs, gradient boosting, image processing</p></div>
-    <div class="skill" style="background:var(--lavender)"><span class="label">Lab &amp; characterisation</span><p>Sandwich ELISA, EDC/sulfo-NHS coupling, 4PL curves, microscopy, DLS, zeta potential, FTIR, contact angle</p></div>
+  <div class="bench">
+    <div class="tool reveal" style="background:var(--yellow)"><span class="label">Transport &amp; modelling</span><p>Microscale fluid mechanics and mass transport, dimensionless scaling, closed-form approximations, finite-difference and FEM (COMSOL), Monte Carlo</p></div>
+    <div class="tool reveal" style="background:var(--mint)"><span class="label">Microfabrication</span><p>Soft lithography, photolithography, PDMS devices, microfluidic chip design</p></div>
+    <div class="tool reveal" style="background:var(--pink)"><span class="label">Hardware &amp; CAD</span><p>PID control, thermocouple feedback, Arduino, ESP; SolidWorks, AutoCAD</p></div>
+    <div class="tool reveal" style="background:var(--sky)"><span class="label">Surfaces &amp; characterisation</span><p>EDC/sulfo-NHS coupling, sandwich ELISA, 4PL curves, microscopy, DLS, zeta potential, FTIR, contact angle</p></div>
+    <div class="tool reveal" style="background:var(--lavender)"><span class="label">Code</span><p>Python (NumPy, SciPy), C++, image processing</p></div>
   </div>
 
-  <!-- awards -->
-  <div class="shead" id="awards">
-    <div><span class="label">✦ Recognition</span><h2>Awards &amp; honors</h2></div>
+  <!-- PUBLICATIONS -->
+  <div class="shead" id="papers">
+    <div><span class="label">✦ Papers</span><h2>Publications</h2></div>
   </div>
-  <section class="block pad">
+  <section class="block pubs reveal">
+    <div class="pub star"><div class="t">How much of a finite sample can a microchannel surface sensor capture? Optimal flow rate, universal capture map and closed-form design rules.</div>
+      <div class="v"><b>Sharma, A.</b> · Microfluidics and Nanofluidics · under review, submitted Oct. 2026 · <a href="https://doi.org/10.21203/rs.3.rs-11390083/v1">PREPRINT ↗</a></div></div>
+    <div class="pub"><div class="t">Development of a low-cost temperature-controlled microheater for lab-on-chip platforms.</div>
+      <div class="v"><b>Sharma, A.</b>, Tawade, A., Sankpal, A., Sethu, N., Pandey, S. · ICRTB 2026, Pune · Poster PP-30</div></div>
+    <div class="pub"><div class="t">Smart contact lens technologies for ocular diagnostics.</div>
+      <div class="v"><b>Sharma, A.</b>, Tawade, A., Pandey, S. · ICRTB 2026, Pune · Poster PP-29</div></div>
+    <div class="pub"><div class="t">In preparation: Low-cost temperature-controlled microheater for PDMS microfluidic lab-on-chip systems · PDMS–quantum-dot contact lens for sustained ocular drug delivery.</div></div>
+    <div class="minor">Also: two manuscripts on validating physiological-sensing models (Physiological Measurement; Biomedical Signal Processing and Control, both under review) and an open database of 245 organ-chip studies (<a href="https://doi.org/10.5281/zenodo.23835346">Zenodo ↗</a>). Full list in the <a href="Ananya_Sharma_CV.pdf">CV</a>.</div>
+  </section>
+
+  <!-- AWARDS -->
+  <div class="shead" id="awards">
+    <div><span class="label">✦ Recognition</span><h2>Awards</h2></div>
+  </div>
+  <section class="block reveal">
     <ul class="awards">
-      <li><span>Academic Merit Medals, MIT-ADT University (Silver, Gold, Silver)</span><span class="yr">2024–2026</span></li>
-      <li><span>SURE Fellowship, IIT Hyderabad (selected from 50,000+ applicants)</span><span class="yr">2026</span></li>
+      <li><span>Smart India Hackathon, Institute Round: Winner (Hardware, 500+ teams); 2nd (1,500+ teams, team lead); 4th (Software)</span><span class="yr">2024–2026</span></li>
       <li><span>1st Place, ICRTB 2026 Poster Presentation (Biomedical Theme)</span><span class="yr">2026</span></li>
       <li><span>Top 10, Health Hack 2026 (with Johns Hopkins University)</span><span class="yr">2026</span></li>
-      <li><span>Smart India Hackathon, Institute Round: Winner (Hardware, 500+ teams); 2nd (1,500+ teams, team lead); 4th (Software)</span><span class="yr">2024–2026</span></li>
+      <li><span>SURE Fellowship, IIT Hyderabad (selected from 50,000+ applicants)</span><span class="yr">2026</span></li>
+      <li><span>Academic Merit Medals, MIT-ADT University (Silver, Gold, Silver)</span><span class="yr">2024–2026</span></li>
     </ul>
   </section>
 
-  <!-- contact -->
-  <section class="block pad contact" id="contact">
+  <!-- CONTACT -->
+  <section class="block contact reveal" id="contact">
     <span class="label">✦ Contact</span>
-    <h2>Let's talk research.</h2>
-    <p class="sublead" style="color:#111">I'm applying to graduate programs for Fall 2027 and always happy to hear about microfluidics and point-of-care diagnostics.</p>
-    <p class="mono" style="font-weight:700; font-size:16px; margin:0 0 18px">ananya.sharma.pune@gmail.com · Pune, India</p>
+    <h2>Let's talk<br>microfluidics.</h2>
+    <p style="max-width:620px">B.Tech Bioengineering, MIT-ADT University, Pune (2027). Applying to graduate programs for Fall 2027.</p>
+    <p class="mono" style="font-weight:700; font-size:17px; margin:0 0 20px">ananya.sharma.pune@gmail.com</p>
     <div class="btns">
       <a class="btn o" href="Ananya_Sharma_CV.pdf">Download CV →</a>
+      <a class="btn" href="https://orcid.org/0009-0001-3081-7199">ORCID ↗</a>
       <a class="btn" href="https://github.com/ananya484">GitHub ↗</a>
     </div>
   </section>
 
-  <footer>© 2026 Ananya Sharma · Outside the lab: 10 years of Bharatanatyam, badminton, painting.</footer>
+  <footer>© 2026 Ananya Sharma · Off the bench: 10 years of Bharatanatyam. A movement isn't finished until it holds under pressure. Neither is a device.</footer>
 </div>
 
 <nav class="pill">
   <a href="#home" class="on">Home</a>
-  <a href="#research">Research</a>
-  <a href="#publications">Papers</a>
-  <a href="#skills" class="extra">Skills</a>
+  <a href="#transport">Physics</a>
+  <a href="#devices">Devices</a>
+  <a href="#papers" class="extra">Papers</a>
   <a href="#contact">Contact</a>
 </nav>
 
 <script>
-  // highlight the pill item for the section in view
-  const links = [...document.querySelectorAll('.pill a')];
-  const targets = links.map(a => document.querySelector(a.getAttribute('href')));
-  addEventListener('scroll', () => {
-    let cur = 0;
-    targets.forEach((t, i) => { if (t && t.getBoundingClientRect().top < innerHeight * 0.4) cur = i; });
-    links.forEach((a, i) => a.classList.toggle('on', i === cur));
-  }, { passive: true });
+// ---------- pill nav highlight ----------
+const links = [...document.querySelectorAll('.pill a')];
+const targets = links.map(a => document.querySelector(a.getAttribute('href')));
+addEventListener('scroll', () => {
+  let cur = 0;
+  targets.forEach((t, i) => { if (t && t.getBoundingClientRect().top < innerHeight * 0.4) cur = i; });
+  links.forEach((a, i) => a.classList.toggle('on', i === cur));
+}, { passive: true });
+
+// ---------- reveal on scroll ----------
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: 0.12 }) : null;
+document.querySelectorAll('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+
+// ---------- Q* = V/T calculator ----------
+const v = document.getElementById('v'), t = document.getElementById('t');
+function calc() {
+  const V = +v.value, T = +t.value, Q = V / T;
+  document.getElementById('vv').textContent = V + ' µL';
+  document.getElementById('tv').textContent = T + ' min';
+  document.getElementById('q').textContent = (Q >= 10 ? Q.toFixed(1) : Q.toFixed(2)) + ' µL/min';
+  document.getElementById('q2').textContent = '= ' + (Q / 60).toFixed(3) + ' µL/s';
+}
+v.addEventListener('input', calc); t.addEventListener('input', calc); calc();
+
+// ---------- spiral microchannel animation (concept) ----------
+(function () {
+  const box = document.getElementById('vizbox'), cv = document.getElementById('spiral'), ctx = cv.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W, H, cx, cy, a, b, turns = 3.1, width;
+  function size() {
+    const r = box.getBoundingClientRect(), d = devicePixelRatio || 1;
+    W = r.width; H = r.height; cv.width = W * d; cv.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+    cx = W / 2; cy = H / 2 + 6;
+    const R = Math.min(W, H) * 0.42;
+    a = R * 0.22; b = (R - a) / (turns * 2 * Math.PI); width = Math.max(12, b * 2 * Math.PI * 0.55);
+  }
+  // point on spiral at angle th with lateral offset n (-1 inner wall .. +1 outer wall)
+  function pt(th, n) {
+    const r = a + b * th + n * width / 2;
+    return [cx + r * Math.cos(th), cy + r * Math.sin(th)];
+  }
+  const thMax = turns * 2 * Math.PI;
+  const cells = [];
+  function spawn(init) {
+    const rigid = Math.random() < 0.45;
+    cells.push({
+      th: init ? Math.random() * thMax : 0, n: (Math.random() * 2 - 1) * 0.8,
+      target: rigid ? -0.62 + (Math.random() - .5) * 0.12 : 0.25 + (Math.random() - .5) * 0.2,
+      rigid, sp: 0.010 + Math.random() * 0.004, ph: Math.random() * 6.28
+    });
+  }
+  function drawChannel() {
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    for (const [lw, col] of [[width + 6, '#000'], [width, '#F8F5E8']]) {
+      ctx.beginPath();
+      for (let th = 0; th <= thMax; th += 0.03) { const [x, y] = pt(th, 0); th ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+      ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.stroke();
+    }
+    // inlet / outlet labels
+    ctx.fillStyle = '#000'; ctx.font = '700 11px "Space Mono", monospace';
+    const [ix, iy] = pt(0, 0), [ox, oy] = pt(thMax, 0);
+    ctx.fillText('IN', ix - 9, iy + 4);
+    ctx.fillText('OUT', ox + width / 2 + 8, oy + 4);
+  }
+  function drawCell(c) {
+    const [x, y] = pt(c.th, c.n), r = Math.max(3.5, width * 0.17);
+    ctx.save(); ctx.translate(x, y); ctx.rotate(c.th + c.ph);
+    ctx.beginPath();
+    if (c.rigid) { // sickle: crescent-ish rigid shape
+      ctx.ellipse(0, 0, r * 1.25, r * 0.55, 0, 0, Math.PI * 2);
+      ctx.fillStyle = '#EF4444';
+    } else { // deformable: wobbling disc
+      const s = 1 + 0.18 * Math.sin(c.th * 6 + c.ph);
+      ctx.ellipse(0, 0, r * s, r / s, 0, 0, Math.PI * 2);
+      ctx.fillStyle = '#BAE6FD';
+    }
+    ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = '#000'; ctx.stroke(); ctx.restore();
+  }
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    drawChannel();
+    for (const c of cells) {
+      c.th += c.sp; c.n += (c.target - c.n) * 0.012; // migrate toward equilibrium position
+      drawCell(c);
+    }
+    for (let i = cells.length - 1; i >= 0; i--) if (cells[i].th > thMax) cells.splice(i, 1);
+    while (cells.length < 34) spawn(false);
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  size(); for (let i = 0; i < 34; i++) spawn(true);
+  if (reduce) cells.forEach(c => c.n = c.target);
+  addEventListener('resize', () => { size(); if (reduce) frame(); });
+  frame();
+})();
 </script>
 
 <!-- Private views counter (GoatCounter). Replace YOURCODE with your GoatCounter site code. -->
