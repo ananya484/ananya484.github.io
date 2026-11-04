@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ananya Sharma · Biomicrofluidics</title>
+<meta name="description" content="Ananya Sharma — Bioengineering undergraduate working on microscale transport, microfluidic devices and point-of-care diagnostics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F5E8;
+    --ink: #111111;
+    --muted: #444444;
+    --yellow: #FEF08A;
+    --lavender: #DDD6FE;
+    --mint: #BBF7D0;
+    --pink: #FBCFE8;
+    --sky: #BAE6FD;
+    --orange: #FB923C;
+    --shadow: 6px 6px 0 #000;
+    --shadow-sm: 4px 4px 0 #000;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font-family: "Space Grotesk", system-ui, sans-serif; font-size: 17px; line-height: 1.55;
+         padding-bottom: 110px; }
+  a { color: inherit; }
+  .mono { font-family: "Space Mono", ui-monospace, monospace; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  /* top bar */
+  .top { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo .mark { width: 46px; height: 46px; border: 2px solid #000; background: var(--yellow);
+                box-shadow: var(--shadow-sm); display: grid; place-items: center; font-weight: 700; font-size: 18px; }
+  .logo .nm { font-weight: 700; font-size: 18px; line-height: 1.1; }
+  .logo .sub { display: inline-block; margin-top: 3px; font-size: 11px; padding: 1px 6px; border: 2px solid #000; background: var(--yellow); }
+  .cta { background: #000; color: #fff; text-decoration: none; padding: 10px 18px; font-family: "Space Mono", monospace;
+         font-weight: 700; font-size: 14px; border: 2px solid #000; box-shadow: var(--shadow-sm); }
+  .cta:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+
+  /* blocks */
+  .block { border: 2px solid #000; box-shadow: var(--shadow); background: var(--bg); margin: 28px 0; }
+  .pad { padding: 34px; }
+  .label { font-family: "Space Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .chip { display: inline-block; border: 2px solid #000; padding: 2px 10px; font-family: "Space Mono", monospace;
+          font-size: 12px; font-weight: 700; text-transform: uppercase; background: #fff; }
+  h1 { font-size: 72px; line-height: .95; letter-spacing: -.02em; margin: 18px 0 16px; font-weight: 700; text-transform: uppercase; }
+  h1 .hl { background: var(--lavender); border: 2px solid #000; padding: 0 10px; box-shadow: var(--shadow-sm); display: inline-block; margin-top: 6px; }
+  h2 { font-size: 34px; line-height: 1.1; margin: 10px 0 8px; font-weight: 700; }
+  .lead { font-size: 20px; max-width: 700px; margin: 0 0 24px; }
+  .sublead { color: var(--muted); max-width: 680px; margin: 0 0 22px; }
+
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; border: 2px solid #000;
+         padding: 10px 16px; font-family: "Space Mono", monospace; font-weight: 700; font-size: 14px;
+         text-transform: uppercase; background: #fff; box-shadow: var(--shadow-sm); transition: transform .08s, box-shadow .08s; }
+  .btn:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .btn.y { background: var(--yellow); }
+  .btn.o { background: var(--orange); }
+
+  /* stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 30px; }
+  .stat { border: 2px solid #000; box-shadow: var(--shadow-sm); padding: 14px 16px; }
+  .stat b { display: block; font-size: 28px; line-height: 1.1; }
+  .stat span { font-family: "Space Mono", monospace; font-size: 12px; text-transform: uppercase; }
+  .s1 { background: var(--yellow); } .s2 { background: var(--lavender); } .s3 { background: var(--mint); } .s4 { background: var(--pink); }
+
+  /* section heads */
+  .shead { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin: 56px 0 18px; }
+  .shead p { margin: 0; color: var(--muted); max-width: 560px; }
+
+  /* research cards */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .card { border: 2px solid #000; box-shadow: var(--shadow); background: #fff; padding: 22px; display: flex; flex-direction: column; }
+  .card .icon { width: 44px; height: 44px; border: 2px solid #000; display: grid; place-items: center; font-size: 20px; margin-bottom: 14px; }
+  .card h3 { font-size: 21px; line-height: 1.2; margin: 6px 0 6px; font-weight: 700; }
+  .card .meta { font-family: "Space Mono", monospace; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .card p { margin: 0 0 14px; }
+  .card .chip { align-self: flex-start; }
+  .card .foot { margin-top: auto; }
+
+  /* publications */
+  .pub { border: 2px solid #000; background: #fff; box-shadow: var(--shadow-sm); padding: 16px 18px; margin-bottom: 14px; }
+  .pub .t { font-weight: 700; }
+  .pub .v { font-size: 15px; color: var(--muted); margin-top: 4px; }
+  .pub a { font-family: "Space Mono", monospace; font-weight: 700; font-size: 13px; }
+  .group { margin: 26px 0 12px; }
+
+  /* skills */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+  .skill { border: 2px solid #000; box-shadow: var(--shadow-sm); padding: 16px 18px; }
+
+  /* awards */
+  .awards { list-style: none; margin: 0; padding: 0; }
+  .awards li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-top: 2px dashed #000; }
+  .awards li:first-child { border-top: 0; }
+  .awards .yr { font-family: "Space Mono", monospace; font-size: 13px; white-space: nowrap; }
+
+  /* contact */
+  .contact { background: var(--yellow); }
+  footer { font-family: "Space Mono", monospace; font-size: 13px; padding: 10px 0 30px; }
+
+  /* floating pill nav */
+  .pill { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 10;
+          display: flex; gap: 4px; background: var(--bg); border: 2px solid #000; border-radius: 999px;
+          padding: 6px; box-shadow: var(--shadow-sm); }
+  .pill a { text-decoration: none; font-family: "Space Mono", monospace; font-weight: 700; font-size: 13px;
+            text-transform: uppercase; padding: 8px 14px; border-radius: 999px; border: 2px solid transparent; white-space: nowrap; }
+  .pill a.on { background: var(--orange); border-color: #000; }
+
+  @media (max-width: 760px) {
+    body { font-size: 16px; }
+    .pad { padding: 22px; }
+    h1 { font-size: 46px; }
+    h2 { font-size: 28px; }
+    .lead { font-size: 18px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .grid { grid-template-columns: 1fr; }
+    .awards li { flex-direction: column; gap: 2px; }
+    .cta { display: none; }
+    .pill a { padding: 7px 9px; font-size: 11px; }
+    .pill a.extra { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <a class="logo" href="#home">
+      <div class="mark mono">AS</div>
+      <div><div class="nm">Ananya Sharma</div><span class="sub mono">BIOENGINEERING · PUNE</span></div>
+    </a>
+    <a class="cta" href="Ananya_Sharma_CV.pdf">Download CV →</a>
+  </div>
+
+  <!-- hero -->
+  <section class="block pad" id="home">
+    <span class="chip">Biomicrofluidics // B.Tech 2027</span>
+    <h1>Ananya<br><span class="hl">Sharma</span></h1>
+    <p class="lead">I study how fluid flow, channel geometry and surface chemistry decide what a microfluidic device can separate or detect, and I build low-cost point-of-care diagnostics around those answers.</p>
+    <div class="btns">
+      <a class="btn o" href="#research">See my research →</a>
+      <a class="btn y" href="Ananya_Sharma_CV.pdf">Download CV →</a>
+      <a class="btn" href="https://scholar.google.com/citations?user=hjBMR0YAAAAJ">Scholar ↗</a>
+      <a class="btn" href="https://orcid.org/0009-0001-3081-7199">ORCID ↗</a>
+      <a class="btn" href="https://github.com/ananya484">GitHub ↗</a>
+    </div>
+    <div class="stats">
+      <div class="stat s1"><b>9.80/10</b><span>CGPA · Rank 2</span></div>
+      <div class="stat s2"><b>IISc</b><span>Research intern 2026</span></div>
+      <div class="stat s3"><b>3</b><span>Papers under review</span></div>
+      <div class="stat s4"><b>8</b><span>Research projects</span></div>
+    </div>
+  </section>
+
+  <!-- research -->
+  <div class="shead" id="research">
+    <div><span class="label">✦ Research</span><h2>What I work on</h2></div>
+    <p>From transport models to finished devices: each project asks what is actually doing the work inside a microfluidic system.</p>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <div class="icon" style="background:var(--lavender)">∇</div>
+      <span class="chip" style="background:var(--lavender)">Modelling</span>
+      <h3>Mass transport in microchannel sensors</h3>
+      <div class="meta">Independent research · sole author · 2026–</div>
+      <p>A convection–diffusion–reaction model of how much of a finite sample a microchannel surface sensor can capture. Capture peaks at flow rate Q* = V/T, under a dimensionless kinetic ceiling; closed-form rules match full simulations within −2.2 to +1.4%.</p>
+      <div class="foot"><a class="btn" href="https://doi.org/10.21203/rs.3.rs-11390083/v1">Preprint ↗</a></div>
+    </div>
+    <div class="card">
+      <div class="icon" style="background:var(--mint)">🧪</div>
+      <span class="chip" style="background:var(--mint)">IISc Bangalore</span>
+      <h3>Plasma biomarker immunoassays</h3>
+      <div class="meta">Prof. Sai Siva Gorthi · Jun–Aug 2026</div>
+      <p>Sandwich ELISAs for the Alzheimer's markers p-tau217 and NfL at pg/mL levels in human plasma. A glutaraldehyde-free EDC/sulfo-NHS surface route on polystyrene, non-specific binding brought under control, and a prototype assay cartridge.</p>
+      <div class="foot"><span class="chip">With CBR &amp; IBRO</span></div>
+    </div>
+    <div class="card">
+      <div class="icon" style="background:var(--pink)">🩸</div>
+      <span class="chip" style="background:var(--pink)">Device</span>
+      <h3>Density-based blood-cell screening</h3>
+      <div class="meta">Dr. Sulaxana Pandey · 2025–26</div>
+      <p>When an integrated magnetic-levitation chip failed on the bench, I built two separate prototypes: a ₹300 thread-driven centrifuge and a ₹2,000 tabletop maglev device, both read by a smartphone AI model, for sickle-cell and thalassemia screening.</p>
+      <div class="foot"><span class="chip" style="background:var(--yellow)">SIH 2025 winner · Health Hack top 10</span></div>
+    </div>
+    <div class="card">
+      <div class="icon" style="background:var(--orange)">🔥</div>
+      <span class="chip" style="background:var(--orange)">Device</span>
+      <h3>Lab-on-chip microheater</h3>
+      <div class="meta">Co-advised by Dr. Navya Sethu · 2025</div>
+      <p>An Arduino PID-controlled nichrome heater with thermocouple feedback that holds PDMS chips within ±0.5 °C, with thermal characterisation, calibration and insulation testing.</p>
+      <div class="foot"><span class="chip">Complete · manuscript in prep</span></div>
+    </div>
+    <div class="card">
+      <div class="icon" style="background:var(--sky)">🦠</div>
+      <span class="chip" style="background:var(--sky)">Device</span>
+      <h3>Rabies diagnostic chip</h3>
+      <div class="meta">2026–</div>
+      <p>Finger-prick plasma separation, anti-nucleoprotein capture and a gold-nanoparticle colorimetric readout scored by a smartphone CNN.</p>
+      <div class="foot"><span class="chip">In development</span></div>
+    </div>
+    <div class="card">
+      <div class="icon" style="background:var(--yellow)">👁</div>
+      <span class="chip" style="background:var(--yellow)">Biomaterials</span>
+      <h3>Quantum-dot contact lens</h3>
+      <div class="meta">2025–</div>
+      <p>Sappan-wood quantum dots in PDMS for sustained, diffusive ocular drug release that can be tracked by fluorescence.</p>
+      <div class="foot"><span class="chip" style="background:var(--yellow)">1st place poster · ICRTB 2026</span></div>
+    </div>
+    <div class="card">
+      <div class="icon" style="background:var(--lavender)">📊</div>
+      <span class="chip" style="background:var(--lavender)">Data</span>
+      <h3>Honest validation of biomedical models</h3>
+      <div class="meta">Independent computational research · 2026–</div>
+      <p>An exercise-stage-only baseline estimated blood lactate with MAE 0.966 mmol/L, beating heart rate alone. Subject-level conformal calibration restored EEG coverage for unseen users (0.787 → 0.908). One random split let a worse model win in 56% of 500 splits.</p>
+      <div class="foot"><span class="chip">2 under review · 1 preprint</span></div>
+    </div>
+    <div class="card">
+      <div class="icon" style="background:var(--mint)">🗺</div>
+      <span class="chip" style="background:var(--mint)">Open data</span>
+      <h3>OrganoidAI Map</h3>
+      <div class="meta">Zenodo database · 2026</div>
+      <p>A coded, searchable database of 245 machine-learning studies on organoids and organs-on-chips, screened from 1,164 records.</p>
+      <div class="foot"><a class="btn" href="https://doi.org/10.5281/zenodo.23835346">Zenodo ↗</a></div>
+    </div>
+  </div>
+
+  <!-- publications -->
+  <div class="shead" id="publications">
+    <div><span class="label">✦ Publications</span><h2>Papers &amp; presentations</h2></div>
+  </div>
+  <section class="block pad" style="background:var(--lavender)">
+    <span class="chip">Under review</span>
+    <div class="group">
+      <div class="pub"><div class="t">How much of a finite sample can a microchannel surface sensor capture? Optimal flow rate, universal capture map and closed-form design rules.</div>
+        <div class="v"><b>Sharma, A.</b> · Microfluidics and Nanofluidics · submitted Oct. 2026 · <a href="https://doi.org/10.21203/rs.3.rs-11390083/v1">PREPRINT ↗</a></div></div>
+      <div class="pub"><div class="t">Exercise stage explains most of the accuracy of blood-lactate estimation in graded exercise tests.</div>
+        <div class="v"><b>Sharma, A.</b> · Physiological Measurement · submitted Sep. 2026 · <a href="https://github.com/ananya484/workloadcal">CODE ↗</a></div></div>
+      <div class="pub"><div class="t">Subject-level conformal calibration for uncertainty-aware mental-workload detection on consumer-grade EEG.</div>
+        <div class="v"><b>Sharma, A.</b>*, Kale, A.*, Pattanashetti, A.* (*equal contribution) · Biomedical Signal Processing and Control · submitted Oct. 2026 · <a href="https://github.com/ananya484/eeg-workload-gradient-boosting">CODE ↗</a></div></div>
+    </div>
+    <span class="chip">Preprints &amp; datasets</span>
+    <div class="group">
+      <div class="pub"><div class="t">The declared winner of a clinical prediction model comparison is often decided by the random split: a simulation study.</div>
+        <div class="v"><b>Sharma, A.</b> · Research Square · 2026 · <a href="https://doi.org/10.21203/rs.3.rs-10794678/v1">DOI ↗</a></div></div>
+      <div class="pub"><div class="t">OrganoidAI Map: a coded database of machine-learning studies on organoids and organs-on-chips (245 studies).</div>
+        <div class="v"><b>Sharma, A.</b> · Zenodo, v1.2.0 · 2026 · <a href="https://doi.org/10.5281/zenodo.23835346">DOI ↗</a></div></div>
+    </div>
+    <span class="chip">Conference posters</span>
+    <div class="group" style="margin-bottom:0">
+      <div class="pub"><div class="t">Development of a low-cost temperature-controlled microheater for lab-on-chip platforms.</div>
+        <div class="v"><b>Sharma, A.</b>, Tawade, A., Sankpal, A., Sethu, N., Pandey, S. · ICRTB 2026, Pune · Poster PP-30</div></div>
+      <div class="pub" style="margin-bottom:0"><div class="t">Smart contact lens technologies for ocular diagnostics.</div>
+        <div class="v"><b>Sharma, A.</b>, Tawade, A., Pandey, S. · ICRTB 2026, Pune · Poster PP-29</div></div>
+    </div>
+  </section>
+
+  <!-- skills -->
+  <div class="shead" id="skills">
+    <div><span class="label">✦ Toolkit</span><h2>Skills</h2></div>
+  </div>
+  <div class="skills">
+    <div class="skill" style="background:var(--yellow)"><span class="label">Transport &amp; modelling</span><p>Microscale fluid mechanics and mass transport, dimensionless scaling, closed-form approximations, finite-difference and FEM (COMSOL), Monte Carlo</p></div>
+    <div class="skill" style="background:var(--mint)"><span class="label">Microfabrication</span><p>Soft lithography, photolithography, PDMS devices, microfluidic chip design</p></div>
+    <div class="skill" style="background:var(--pink)"><span class="label">Hardware &amp; design</span><p>PID control, thermocouple feedback, Arduino, ESP, IoT; SolidWorks, AutoCAD</p></div>
+    <div class="skill" style="background:var(--sky)"><span class="label">Programming</span><p>Python (NumPy, SciPy, scikit-learn), C++, Java, SQL; CNNs, gradient boosting, image processing</p></div>
+    <div class="skill" style="background:var(--lavender)"><span class="label">Lab &amp; characterisation</span><p>Sandwich ELISA, EDC/sulfo-NHS coupling, 4PL curves, microscopy, DLS, zeta potential, FTIR, contact angle</p></div>
+  </div>
+
+  <!-- awards -->
+  <div class="shead" id="awards">
+    <div><span class="label">✦ Recognition</span><h2>Awards &amp; honors</h2></div>
+  </div>
+  <section class="block pad">
+    <ul class="awards">
+      <li><span>Academic Merit Medals, MIT-ADT University (Silver, Gold, Silver)</span><span class="yr">2024–2026</span></li>
+      <li><span>SURE Fellowship, IIT Hyderabad (selected from 50,000+ applicants)</span><span class="yr">2026</span></li>
+      <li><span>1st Place, ICRTB 2026 Poster Presentation (Biomedical Theme)</span><span class="yr">2026</span></li>
+      <li><span>Top 10, Health Hack 2026 (with Johns Hopkins University)</span><span class="yr">2026</span></li>
+      <li><span>Smart India Hackathon, Institute Round: Winner (Hardware, 500+ teams); 2nd (1,500+ teams, team lead); 4th (Software)</span><span class="yr">2024–2026</span></li>
+    </ul>
+  </section>
+
+  <!-- contact -->
+  <section class="block pad contact" id="contact">
+    <span class="label">✦ Contact</span>
+    <h2>Let's talk research.</h2>
+    <p class="sublead" style="color:#111">I'm applying to graduate programs for Fall 2027 and always happy to hear about microfluidics and point-of-care diagnostics.</p>
+    <p class="mono" style="font-weight:700; font-size:16px; margin:0 0 18px">ananya.sharma.pune@gmail.com · Pune, India</p>
+    <div class="btns">
+      <a class="btn o" href="Ananya_Sharma_CV.pdf">Download CV →</a>
+      <a class="btn" href="https://github.com/ananya484">GitHub ↗</a>
+    </div>
+  </section>
+
+  <footer>© 2026 Ananya Sharma · Outside the lab: 10 years of Bharatanatyam, badminton, painting.</footer>
+</div>
+
+<nav class="pill">
+  <a href="#home" class="on">Home</a>
+  <a href="#research">Research</a>
+  <a href="#publications">Papers</a>
+  <a href="#skills" class="extra">Skills</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<script>
+  // highlight the pill item for the section in view
+  const links = [...document.querySelectorAll('.pill a')];
+  const targets = links.map(a => document.querySelector(a.getAttribute('href')));
+  addEventListener('scroll', () => {
+    let cur = 0;
+    targets.forEach((t, i) => { if (t && t.getBoundingClientRect().top < innerHeight * 0.4) cur = i; });
+    links.forEach((a, i) => a.classList.toggle('on', i === cur));
+  }, { passive: true });
+</script>
+
+<!-- Private views counter (GoatCounter). Replace YOURCODE with your GoatCounter site code. -->
+<script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
